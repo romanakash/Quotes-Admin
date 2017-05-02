@@ -1,0 +1,22 @@
+body {
+    min-height: 100%;
+}
+
+.top-bar {
+    text-align: center;
+    background-color: #FE5F55;
+    height: 10%;
+}
+
+.main {
+    margin: 100px;
+    font-size: 25px;
+}
+
+.heading {
+    font-family: 'Code-Light', sans-serif;
+    font-size: 50px;
+    color: white;
+    postion: relative;
+    padding-top: 50px
+}
