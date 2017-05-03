@@ -4,11 +4,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { postQuotes } from '../api';
 import Tag from './Tag';
 
-let quotes = [];
-
 class QuotesForm extends Component {
     constructor() {
         super();
+        this.quotes = [];
         this.state = {
             value: '',
             author: '',
@@ -24,7 +23,7 @@ class QuotesForm extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        quotes.push(this.state);
+        this.quotes.push(this.state);
         console.log("Succesfully Added");
     }
     handleClear = (e) => {
@@ -37,12 +36,12 @@ class QuotesForm extends Component {
     }
     handleBucket = (e) => {
         e.preventDefault();
-        quotes = [];
+        this.quotes = [];
         console.log("Cleared Bucket");
     }
     handleRequest = (e) => {
         e.preventDefault();
-        postQuotes(quotes);
+        postQuotes(this.quotes);
         console.log("Sent to Server");
     }
     render() {
