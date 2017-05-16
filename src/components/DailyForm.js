@@ -3,8 +3,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import { postDaily } from '../api';
-import Tag from './Tag';
-import moment from 'moment';
 
 let dailies = [];
 
@@ -14,24 +12,15 @@ class DailyForm extends Component {
         this.state = {
             value: '',
             author: '',
-            tags: {},
             day: '',
-            date: null,
-            creationDate: null,
+            date: null
         };
     }
     handleChange = (e) => {
-        this.setState({ [e.target.id]: e.target.value});
+        this.setState({ [e.target.id]: e.target.value})
     }
     handleDate = (e, date) => {
-        this.setState({ date: date});
-        let formatDate = moment(date).format("DD-MM-YY");
-        console.log(formatDate);
-        this.setState({ creationDate: formatDate})
-    }
-    handleTag = (chosenRequest) => {
-        this.setState({ tags: chosenRequest });
-        console.log(chosenRequest.tagId, chosenRequest.tag);
+        this.setState({ date: date })
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -43,8 +32,8 @@ class DailyForm extends Component {
         this.setState({
             value: '',
             author: '',
-            tags: {}
-        });
+            day: ''
+        })
     }
     handleBucket = (e) => {
         e.preventDefault();
@@ -57,7 +46,6 @@ class DailyForm extends Component {
         console.log("Sent to Server");
     }
     render() {
-        let defaultd = new Date(2017, 6, 1)
         return (
             <div className="form">
                 <TextField
@@ -75,11 +63,10 @@ class DailyForm extends Component {
                     floatingLabelText="Author"
                 /> <br />  <br />
                 <DatePicker
-                    hintText="Creation Date"
+                    hintText="Date"
                     value={this.state.date}
                     onChange={this.handleDate}
                     container="inline" mode="landscape"
-                    defaultDate={defaultd}
                 />
                 <TextField
                     id="day"
@@ -87,12 +74,10 @@ class DailyForm extends Component {
                     onChange={this.handleChange}
                     floatingLabelText="Day"
                 /> <br />  <br />
-                <Tag handler={this.handleTag}/> <br />
                 <RaisedButton
                     label="Submit"
                     primary={true}
                     style={{ margin: 12 }}
-                    disabled={this.state.tag === '' ? true : false}
                     onClick={this.handleSubmit}
                 />
                 <RaisedButton
@@ -105,7 +90,6 @@ class DailyForm extends Component {
                     label="Send to api"
                     secondary={true}
                     style={{ margin: 12 }}
-                    disabled={this.state.tag === '' ? true : false}
                     onClick={this.handleRequest}
                 /> <br />
                 <RaisedButton
