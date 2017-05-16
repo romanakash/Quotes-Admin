@@ -21,6 +21,7 @@ class DailyForm extends Component {
     }
     handleDate = (e, date) => {
         this.setState({ date: date })
+        console.log(date)
     }
     handleSubmit = (e) => {
         e.preventDefault();
