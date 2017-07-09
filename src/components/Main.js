@@ -12,6 +12,9 @@ class Main extends Component {
     setDaily = () => {
         this.setState({ type: 'daily' })
     }
+    setAnalyze = () => {
+        this.setState({ type: 'analyze' })
+    }
     render() {
         return (
             <div>
@@ -30,6 +33,12 @@ class Main extends Component {
                         secondary={true}
                         style={{ margin: 12 }}
                         onClick={this.setDaily}
+                    />
+                    <RaisedButton
+                        label="analyze"
+                        secondary={true}
+                        style={{ margin: 12 }}
+                        onClick={this.setAnalyze}
                     /> <br /> <br/>
                     <Forms type={this.state.type}/>
                 </div>

@@ -7,21 +7,17 @@ import { postDaily } from '../api';
 let dailies = [];
 
 class DailyForm extends Component {
-    constructor() {
-        super();
-        this.state = {
-            value: '',
-            author: '',
-            day: '',
-            date: null
-        };
-    }
+    state = {
+        value: '',
+        author: '',
+        day: '',
+        date: null
+    };
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value})
     }
     handleDate = (e, date) => {
         this.setState({ date: date })
-        console.log(date)
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -33,7 +29,8 @@ class DailyForm extends Component {
         this.setState({
             value: '',
             author: '',
-            day: ''
+            day: '',
+            date: null
         })
     }
     handleBucket = (e) => {

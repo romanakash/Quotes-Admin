@@ -1,4 +1,5 @@
 import { create } from 'apisauce';
+import moment from 'moment-timezone';
 
 const api = create({
     baseURL: 'https://q-s.herokuapp.com/',
@@ -15,8 +16,19 @@ const postQuotes = (array) => {
     }
 }
 
+const changeTimezone = (date) => {
+    let now = moment(date);
+    let another = now.clone();
+    another.tz('GMT');
+    another.add(now.utcOffset() - another.utcOffset(), 'minutes');
+    let final = another.toISOString();
+    console.log(final);
+    return final;
+}
+
 const postDaily = (array) => {
     for (var daily of array) {
+        daily.date = changeTimezone(daily.date);
         let json = JSON.stringify(daily);
         console.log(json);
         api.post('/post-dailies', { json })
